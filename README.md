@@ -15,9 +15,6 @@ $ prisma generate
 4. Seed data
 $ prisma db seed
 
-5. Genatate types from schema of DWH
-$ prisma generate --schema=./src/prisma-dwh/schema.prisma
-
 
 --------------------------
 Nest module file workflow
