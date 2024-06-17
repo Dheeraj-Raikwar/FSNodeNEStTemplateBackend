@@ -53,7 +53,7 @@ export class AuthService {
     async login(data: LoginDto): Promise<ApiResponse<LoginResponse>> {
         const userExists = await this.UserService.findOneByEmail(data.username);
         if (userExists) {
-            if (userExists.status === UserStatus.INACTIVE) return { success: false, message: 'Please activate your account' }
+            if (userExists.status === UserStatus.Inactive) return { success: false, message: 'Please activate your account' }
             const isCorrectPassword = await this.comparePassword(data.password, userExists.password);
             if (!isCorrectPassword) { 
                 return { success: false, message: `User's name or Password is incorrect` }
@@ -70,7 +70,7 @@ export class AuthService {
     async loginO365(user: any): Promise<ApiResponse<O365LoginResponse>> {
         const existingUser = await this.UserService.findOneByEmail(user.email);
         if (existingUser) {
-            if (existingUser.status === UserStatus.INACTIVE) return { success: false, message: 'Please activate your account' }
+            if (existingUser.status === UserStatus.Inactive) return { success: false, message: 'Please activate your account' }
             const token = await this.generateToken(existingUser);
             const { password, ...userData } = existingUser;
             return { success: true, data: { user: userData, token: token } }
